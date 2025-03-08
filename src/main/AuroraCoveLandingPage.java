@@ -17,18 +17,18 @@ public class AuroraCoveLandingPage extends JFrame {
         setLocationRelativeTo(null);
         getContentPane().setLayout(null);
 
-        // Load images using getResource (Fixing path)
-        JLabel logoLabel = new JLabel(new ImageIcon(getClass().getResource("/imageicon/navbar.png")), SwingConstants.CENTER);
+        // Load images using getResource
+        JLabel logoLabel = new JLabel(loadImage("/resources/imageicon/navbar.png"), SwingConstants.CENTER);
         logoLabel.setBounds(0, 0, 755, 97);
         getContentPane().add(logoLabel);
 
-        JButton adminButton = new JButton(new ImageIcon(getClass().getResource("/imageicon/1.png")));
+        JButton adminButton = new JButton(loadImage("/resources/imageicon/1.png"));
         adminButton.setBackground(new Color(3, 91, 150));
         adminButton.setBounds(61, 108, 256, 281);
         adminButton.setToolTipText("Admin Login");
         getContentPane().add(adminButton);
 
-        JButton receptionistButton = new JButton(new ImageIcon(getClass().getResource("/imageicon/2.png")));
+        JButton receptionistButton = new JButton(loadImage("/resources/imageicon/2.png"));
         receptionistButton.setBackground(new Color(3, 91, 150));
         receptionistButton.setBounds(407, 108, 256, 281);
         receptionistButton.setToolTipText("Receptionist Login");
@@ -61,6 +61,17 @@ public class AuroraCoveLandingPage extends JFrame {
                 dispose();
             }
         });
+    }
+
+    // Helper method to load images safely
+    private ImageIcon loadImage(String path) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 
     public static void main(String[] args) {
