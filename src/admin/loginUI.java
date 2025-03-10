@@ -23,7 +23,7 @@ public class loginUI extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/bglog.png");
+                ImageIcon backgroundImage = loadImage("/resources/ImageIcon/bglog.png");
                 g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -65,7 +65,7 @@ public class loginUI extends JFrame {
         // Login Button
         JButton loginButton = new JButton("");
         loginButton.setBounds(154, 355, 95, 30);
-        ImageIcon arrowIcon = new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/buton.png");
+        ImageIcon arrowIcon = loadImage("/resources/ImageIcon/buton.png");
         loginButton.setIcon(arrowIcon);
         loginPanel.add(loginButton);
 
@@ -82,7 +82,7 @@ public class loginUI extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon rightSideImage = new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/hotel6.png");
+                ImageIcon rightSideImage = loadImage("/resources/ImageIcon/hotel6.png");
                 g.drawImage(rightSideImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -123,7 +123,7 @@ public class loginUI extends JFrame {
                 stmt.setString(2, password);
 
                 try (ResultSet rs = stmt.executeQuery()) {
-                    return rs.next(); 
+                    return rs.next();
                 }
             }
         } catch (SQLException e) {
@@ -131,7 +131,7 @@ public class loginUI extends JFrame {
         }
         return false;
     }
-    
+
     public boolean deleteUser(String username) {
         String sql = "DELETE FROM users WHERE username = ? AND super_admin = FALSE";
 
@@ -145,7 +145,7 @@ public class loginUI extends JFrame {
             return false;
         }
     }
-    
+
     public boolean validateMainAdminLogin(String username, String password) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ? AND super_admin = TRUE";
 
@@ -155,7 +155,7 @@ public class loginUI extends JFrame {
             stmt.setString(2, password);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next(); // Returns true if a match is found
+                return rs.next();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -163,7 +163,6 @@ public class loginUI extends JFrame {
         }
     }
 
-    
     public boolean updateUserRole(String username, String newRole) {
         String sql = "UPDATE users SET role = ? WHERE username = ? AND super_admin = FALSE";
 
@@ -178,7 +177,6 @@ public class loginUI extends JFrame {
             return false;
         }
     }
-
 
     private boolean checkIfMainAdmin(String email) {
         String dbURL = "jdbc:mysql://127.0.0.1:3306/hotel";
@@ -205,6 +203,16 @@ public class loginUI extends JFrame {
     private void openAdminDashboard(String email, boolean isMainAdmin) {
         AdminDashboard dashboard = new AdminDashboard(email);
         dashboard.setVisible(true);
+    }
+
+    private ImageIcon loadImage(String path) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Error: Couldn't find file: " + path);
+            return new ImageIcon();
+        }
     }
 
     public static void main(String[] args) {
