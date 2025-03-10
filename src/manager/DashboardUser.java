@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.net.URL;
 
 public class DashboardUser extends JPanel {
 
@@ -16,7 +17,7 @@ public class DashboardUser extends JPanel {
         setLayout(null);
         
         // Top Logo Panel
-        ImageIcon logoIcon = new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/navbar.png");
+        ImageIcon logoIcon = new ImageIcon("/resources/ImageIcon/navbar.png");
         JLabel logoLabel = new JLabel(logoIcon);
         logoLabel.setBounds(0, 30, 300, 76); // Adjusts to the icon's original dimensions
         add(logoLabel); // Add the logoLabel directly to the content pane
@@ -87,7 +88,7 @@ public class DashboardUser extends JPanel {
         JLabel lblNewLabel = new JLabel("New label");
         lblNewLabel.setBounds(0, 0, 382, 223);
         panel_1.add(lblNewLabel);
-        lblNewLabel.setIcon(new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/image 14.png"));
+        lblNewLabel.setIcon(new ImageIcon("/resources/ImageIcon/image 14.png"));
         
         JPanel panel_2 = new JPanel();
         panel_2.setBackground(new Color(255, 165, 0));
@@ -123,7 +124,7 @@ public class DashboardUser extends JPanel {
         panel_1_1.setLayout(null);
         
         JLabel lblNewLabel_1 = new JLabel("New label");
-        lblNewLabel_1.setIcon(new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/image 15.png"));
+        lblNewLabel_1.setIcon(new ImageIcon("/resources/ImageIcon/image 15.png"));
         lblNewLabel_1.setBounds(0, 0, 382, 223);
         panel_1_1.add(lblNewLabel_1);
         
@@ -161,7 +162,7 @@ public class DashboardUser extends JPanel {
         panel_1_2.setLayout(null);
         
         JLabel lblNewLabel_2 = new JLabel("New label");
-        lblNewLabel_2.setIcon(new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/image 16.png"));
+        lblNewLabel_2.setIcon(new ImageIcon("/resources/ImageIcon/image 16.png"));
         lblNewLabel_2.setBounds(0, 0, 382, 223);
         panel_1_2.add(lblNewLabel_2);
         
@@ -210,5 +211,14 @@ public class DashboardUser extends JPanel {
             navPanel.add(button);
         }
 
+    }
+    private Image loadImage(String path) {
+        URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL).getImage();
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 }

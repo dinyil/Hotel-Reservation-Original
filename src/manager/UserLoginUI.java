@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.io.File;
+import java.net.URL;
 
 public class UserLoginUI extends JFrame {
     private JTextField emailField;
@@ -15,6 +17,7 @@ public class UserLoginUI extends JFrame {
         setTitle("Employee Login");
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
         // Set up content pane with layout
         contentPane = new JPanel(new BorderLayout());
@@ -25,8 +28,12 @@ public class UserLoginUI extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/bglog.png");
-                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+                Image backgroundImage = loadImage("/resources/ImageIcon/bglog.png");
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                } else {
+                    System.err.println("Error: Background image not found.");
+                }
             }
         };
         loginPanel.setPreferredSize(new Dimension(450, 600));
@@ -67,8 +74,14 @@ public class UserLoginUI extends JFrame {
         // Login Button
         JButton loginButton = new JButton("");
         loginButton.setBounds(154, 355, 95, 30);
-        ImageIcon arrowIcon = new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/buton.png");
-        loginButton.setIcon(arrowIcon);
+
+        ImageIcon arrowIcon = new ImageIcon(loadImage("/resources/ImageIcon/buton.png"));
+        if (arrowIcon.getImage() != null) {
+            loginButton.setIcon(arrowIcon);
+        } else {
+            System.err.println("Error: Button image not found.");
+        }
+
         loginPanel.add(loginButton);
 
         // Add Action Listener to Login Button
@@ -84,8 +97,12 @@ public class UserLoginUI extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon rightSideImage = new ImageIcon("C:/Users/JC Mendez/Downloads/AuroraCoveHotel/auroraCoveHotel/ImageIcon/hotel6.png");
-                g.drawImage(rightSideImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+                Image rightSideImage = loadImage("/resources/ImageIcon/hotel6.png");
+                if (rightSideImage != null) {
+                    g.drawImage(rightSideImage, 0, 0, getWidth(), getHeight(), this);
+                } else {
+                    System.err.println("Error: Right-side image not found.");
+                }
             }
         };
         contentPane.add(imagePanel, BorderLayout.CENTER);
@@ -135,6 +152,16 @@ public class UserLoginUI extends JFrame {
         dashboardFrame.setContentPane(dashboard);
         dashboardFrame.setSize(1243, 875);
         dashboardFrame.setVisible(true);
+    }
+
+    private Image loadImage(String path) {
+        URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL).getImage();
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 
     public static void main(String[] args) {
