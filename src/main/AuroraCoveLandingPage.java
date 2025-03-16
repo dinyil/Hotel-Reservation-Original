@@ -34,14 +34,14 @@ public class AuroraCoveLandingPage extends JFrame {
         receptionistButton.setToolTipText("Receptionist Login");
         getContentPane().add(receptionistButton);
 
-        JLabel lblNewLabel = new JLabel("RECEPTIONIST");
+        JLabel lblNewLabel = new JLabel("ADMIN");
         lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.BOLD, 20));
-        lblNewLabel.setBounds(113, 400, 139, 32);
+        lblNewLabel.setBounds(150, 400, 75, 32);
         getContentPane().add(lblNewLabel);
 
-        JLabel lblAdmin = new JLabel("ADMIN");
+        JLabel lblAdmin = new JLabel("RECEPTIONIST");
         lblAdmin.setFont(new Font("Segoe UI Semibold", Font.BOLD, 20));
-        lblAdmin.setBounds(518, 400, 75, 32);
+        lblAdmin.setBounds(475, 400, 139, 32);
         getContentPane().add(lblAdmin);
 
         // Redirect to Admin Login
