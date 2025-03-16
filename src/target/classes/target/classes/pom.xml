@@ -8,12 +8,21 @@
     <version>1.0</version>
 
     <dependencies>
+        <!-- Bcrypt for password hashing -->
         <dependency>
             <groupId>at.favre.lib</groupId>
             <artifactId>bcrypt</artifactId>
             <version>0.10.2</version>
         </dependency>
-    </dependencies>
+
+        <!-- MySQL Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+    </dependencies>  <!-- Missing closing tag added here -->
+
     <build>
         <plugins>
             <plugin>

@@ -114,7 +114,7 @@ public class loginUI extends JFrame {
     private boolean validateAdminLogin(String email, String password) {
         String dbURL = "jdbc:mysql://127.0.0.1:3306/hotel";
         String dbUsername = "root";
-        String dbPassword = "AandromedaNnebula11";
+        String dbPassword = "11211810jr";
 
         try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword)) {
             String sql = "SELECT * FROM users WHERE email = ? AND password = ? AND (role = 'admin' OR super_admin = TRUE)";
@@ -135,7 +135,7 @@ public class loginUI extends JFrame {
     public boolean deleteUser(String username) {
         String sql = "DELETE FROM users WHERE username = ? AND super_admin = FALSE";
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hotel", "root", "AandromedaNnebula11");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hotel", "root", "11211810jr");
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);
             int rowsAffected = stmt.executeUpdate();
@@ -149,7 +149,7 @@ public class loginUI extends JFrame {
     public boolean validateMainAdminLogin(String username, String password) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ? AND super_admin = TRUE";
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hotel", "root", "AandromedaNnebula11");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hotel", "root", "11211810jr");
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -166,7 +166,7 @@ public class loginUI extends JFrame {
     public boolean updateUserRole(String username, String newRole) {
         String sql = "UPDATE users SET role = ? WHERE username = ? AND super_admin = FALSE";
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hotel", "root", "AandromedaNnebula11");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hotel", "root", "11211810jr");
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newRole);
             stmt.setString(2, username);
@@ -181,7 +181,7 @@ public class loginUI extends JFrame {
     private boolean checkIfMainAdmin(String email) {
         String dbURL = "jdbc:mysql://127.0.0.1:3306/hotel";
         String dbUsername = "root";
-        String dbPassword = "AandromedaNnebula11";
+        String dbPassword = "11211810jr";
 
         try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword)) {
             String sql = "SELECT super_admin FROM users WHERE email = ?";

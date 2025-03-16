@@ -121,9 +121,9 @@ public class AddUser extends JFrame {
     }
 
     public void addUserToDatabase(String username, String email, String password, String role) {
-        String dbURL = "jdbc:mysql://localhost:3306/hotel_management";
+        String dbURL = "jdbc:mysql://127.0.0.1:3306/hotel";
         String dbUsername = "root";
-        String dbPassword = "password";
+        String dbPassword = "11211810jr";
 
         try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword)) {
             String sql = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)";

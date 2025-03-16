@@ -76,9 +76,9 @@ public class ViewAllUsers extends JFrame {
         List<String> users = new ArrayList<>();
 
         // Example database connection details (customize for your database)
-        String url = "jdbc:mysql://localhost:3306/hotel";
+        String url = "jdbc:mysql://127.0.0.1:3306/hotel";
         String user = "root";
-        String password = "AandromedaNnebula11";
+        String password = "11211810jr";
 
         String query = "SELECT username FROM users";
 
